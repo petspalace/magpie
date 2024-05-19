@@ -1,4 +1,4 @@
-FROM docker.io/library/golang:1.19-alpine AS build
+FROM docker.io/library/golang:1.22-alpine AS build
 MAINTAINER Simon de Vlieger <cmdr@supakeen.com>
 
 WORKDIR /app
