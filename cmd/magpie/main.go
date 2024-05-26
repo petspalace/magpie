@@ -110,6 +110,8 @@ func main() {
 		if token := c.Connect(); token.Wait() && token.Error() != nil {
 			logger.Println("Error connecting to MQTT server, retrying")
 			time.Sleep(5 * time.Second)
+		} else {
+			break
 		}
 	}
 
