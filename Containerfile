@@ -8,9 +8,10 @@ COPY go.sum ./
 
 RUN go mod download
 
+COPY ./cmd ./cmd
 COPY *.go ./
 
-RUN go build -o /magpie
+RUN go build -o /magpie ./cmd/magpie
 
 FROM docker.io/library/alpine:latest
 MAINTAINER Simon de Vlieger <cmdr@supakeen.com>
