@@ -28,6 +28,7 @@ type WeatherAPIData struct {
 	GustSpeed         string                `xml:"windstotenMS"`
 	AirPressure       string                `xml:"luchtdruk"`
 	SightRange        string                `xml:"zichtmeters"`
+	SunIntensity      string                `xml:"zonintensiteitWM2"`
 	Rain              string                `xml:"regenMMPU"`
 }
 
@@ -135,6 +136,11 @@ func WeatherLoop(ch chan MqttCronMessage) {
 			if len(WeatherAPINormalizeValue(location.SightRange)) > 0 {
 				tpcs = append(tpcs, fmt.Sprintf("%s/%s", topicFromEnv, "sight"))
 				msgs = append(msgs, fmt.Sprintf("%s", location.SightRange))
+			}
+
+			if len(WeatherAPINormalizeValue(location.SunIntensity)) > 0 {
+				tpcs = append(tpcs, fmt.Sprintf("%s/%s", topicFromEnv, "sun"))
+				msgs = append(msgs, fmt.Sprintf("%s", location.SunIntensity))
 			}
 
 			for idx, msg := range msgs {
